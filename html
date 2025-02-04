@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is your computer off??</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #noText {
+            font-family: "Times New Roman", serif;
+            font-size: 50px;
+            color: black;
+            position: absolute;
+            z-index: 10;
+        }
+        
+        #hamburgerIcon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 20;
+        }
+        
+        #noobIcon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        #videoContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 80%;
+            max-width: 800px;
+            height: auto;
+        }
+
+        .fade-out {
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Text that will always be in the center of the screen -->
+    <div id="noText">NO</div>
+
+    <!-- Tiny Hamburger Image -->
+    <img id="hamburgerIcon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Hamburger_icon_%28Simple%29.svg/1024px-Hamburger_icon_%28Simple%29.svg.png" alt="Hamburger Icon" />
+
+    <!-- Tiny Roblox Noob Face Image -->
+    <img id="noobIcon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Roblox_Logo_2017.svg/800px-Roblox_Logo_2017.svg.png" alt="Roblox Noob Icon" />
+
+    <!-- Video Container that will play the clip -->
+    <div id="videoContainer">
+        <video id="videoClip" controls autoplay>
+            <source src="https://www.youtube.com/watch?v=QMG0p1fT2j0" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <audio id="hamburgerSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+    <script>
+        // Get elements
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const noobIcon = document.getElementById('noobIcon');
+        const hamburgerSound = document.getElementById('hamburgerSound');
+        const videoContainer = document.getElementById('videoContainer');
+        const videoClip = document.getElementById('videoClip');
+
+        // When the hamburger icon is clicked
+        hamburgerIcon.addEventListener('click', function() {
+            hamburgerSound.play();
+        });
+
+        // When the Noob face is clicked
+        noobIcon.addEventListener('click', function() {
+            // Fade out the screen
+            document.body.classList.add('fade-out');
+            
+            // Wait for the fade out effect to finish, then show the video
+            setTimeout(function() {
+                // Show the video container
+                videoContainer.style.display = 'flex';
+
+                // Play the video clip
+                videoClip.play();
+            }, 2000); // This is the time it takes for the fade-out animation to complete (2 seconds)
+        });
+    </script>
+
+</body>
+</html>
